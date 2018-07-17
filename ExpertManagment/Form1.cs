@@ -8,7 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 using System.Drawing.Drawing2D;
+using System.Threading;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using Microsoft.Msagl;
@@ -20,6 +24,7 @@ namespace ExpertManagment
     {
         List<PrimaryGraph.Verticle> loaded_graph;
         List<PrimaryGraph.Verticle> new_graph = new List<PrimaryGraph.Verticle>();
+        string base_dir;
         public Form1()
         {
             InitializeComponent();
@@ -27,33 +32,44 @@ namespace ExpertManagment
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
-            checkBoxColumn.HeaderText = "";
-            checkBoxColumn.Width = 30;
-            checkBoxColumn.Name = "checkBoxColumn";
-
-            DataGridViewCheckBoxColumn checkBoxColumn1 = new DataGridViewCheckBoxColumn();
-            checkBoxColumn1.HeaderText = "";
-            checkBoxColumn1.Width = 30;
-            checkBoxColumn1.Name = "checkBoxColumn";
 
             DataGridViewButtonColumn buttonBoxColumn = new DataGridViewButtonColumn();
             buttonBoxColumn.Text = "X";
-            buttonBoxColumn.Width = 30;
+            buttonBoxColumn.Width = 35;
 
             DataGridViewButtonColumn buttonBoxColumn1 = new DataGridViewButtonColumn();
             buttonBoxColumn1.Text = "X";
-            buttonBoxColumn1.Width = 30;
+            buttonBoxColumn1.Width = 35;
 
-            dataGridView2.Columns.Insert(0, checkBoxColumn);
-            dataGridView1.Columns.Insert(0, checkBoxColumn1);
+            DataGridViewButtonColumn buttonBoxColumn2 = new DataGridViewButtonColumn();
+            buttonBoxColumn2.Text = "X";
+            buttonBoxColumn2.Width = 35;
+
+            DataGridViewButtonColumn buttonBoxColumn3 = new DataGridViewButtonColumn();
+            buttonBoxColumn3.Text = "X";
+            buttonBoxColumn3.Width = 35;
+
             dataGridView2.Columns.Insert(0, buttonBoxColumn);
             dataGridView1.Columns.Insert(0, buttonBoxColumn1);
+
+            dataGridView2.Columns.Insert(1, buttonBoxColumn2);
+            dataGridView1.Columns.Insert(1, buttonBoxColumn3);
+
+            dataGridView1.Columns[2].Width = 45;
+            dataGridView2.Columns[2].Width = 45;
+            dataGridView1.Columns[3].Width = 180;
+            dataGridView2.Columns[3].Width = 180;
+            dataGridView1.Columns[4].Width = 74;
+            dataGridView2.Columns[4].Width = 74;
+
+            AppDomain domain = AppDomain.CreateDomain("/");
+            base_dir = domain.BaseDirectory;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -120,6 +136,18 @@ namespace ExpertManagment
             {
                 e.Handled = true;
             }
+
+            checkEnableAddVerticle();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            checkEnableAddVerticle();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            checkEnableAddVerticle();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -230,7 +258,7 @@ namespace ExpertManagment
             panel1.Controls.Add(graphView);
             panel1.ResumeLayout();
         }
-     
+
         private void renderPrimaryGraphBinding()
         {
             //Show influence
@@ -286,6 +314,18 @@ namespace ExpertManagment
             comboBox2.Enabled = enable;
         }
 
+        private void checkEnableAddVerticle()
+        {
+            if (textBox1.Text != "" && textBox2.Text != "")
+            {
+                button5.Enabled = true;
+            }
+            else
+            {
+                button5.Enabled = false;
+            }
+        }
+
         private void button9_Click(object sender, EventArgs e)
         {
             listBox2.Items.Clear();
@@ -293,7 +333,8 @@ namespace ExpertManagment
             comboBox2.Items.Clear();
             textBox1.Clear();
             textBox2.Clear();
-
+            button7.Enabled = false;
+            button8.Enabled = false;
             Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Text|*.txt";
@@ -346,6 +387,28 @@ namespace ExpertManagment
                     }
                 }
             }
+
+            if (e.ColumnIndex == 1 && listBox2.Items.Count > 0)
+            {
+                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+                string clicked_verticle_id = row.Cells[2].Value.ToString();
+                string clicked_verticle_name = row.Cells[3].Value.ToString();
+                string clicked_verticle_value = row.Cells[4].Value.ToString();
+                string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+                string action_verticle = "";
+
+                if (Double.Parse(clicked_verticle_value) > 0)
+                {
+                    action_verticle = "increases ";
+                }
+                else
+                {
+                    action_verticle = "decreases ";
+                }
+
+                MessageBox.Show(@"Increasing  attribute """ + verticleSplit[1] + @""" by 1 " + action_verticle + @"""" + clicked_verticle_name + @"""" + " by " + clicked_verticle_value);
+
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -373,6 +436,28 @@ namespace ExpertManagment
                         }
                     }
                 }
+            }
+
+            if (e.ColumnIndex == 1 && listBox2.Items.Count > 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                string clicked_verticle_id = row.Cells[2].Value.ToString();
+                string clicked_verticle_name = row.Cells[3].Value.ToString();
+                string clicked_verticle_value = row.Cells[4].Value.ToString();
+                string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+                string action_verticle = "";
+
+                if (Double.Parse(clicked_verticle_value) > 0)
+                {
+                    action_verticle = "increases ";
+                }
+                else
+                {
+                    action_verticle = "decreases ";
+                }
+
+                MessageBox.Show(@"Increasing  attribute """ + clicked_verticle_name + @""" by 1 " + action_verticle + @"""" + verticleSplit[1] + @"""" + " by " + clicked_verticle_value);
+
             }
         }
 
@@ -439,6 +524,32 @@ namespace ExpertManagment
         {
             var form2 = new Form2(new_graph);
             form2.Show();
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+            Process myProcess = new Process();
+            string parameters = "";
+            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c pq.exe");
+            try
+            {
+                processInfo.UseShellExecute = false;
+                processInfo.WorkingDirectory = base_dir + "\\Mixing\\Example\\";
+
+                myProcess.StartInfo = processInfo;
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.RedirectStandardOutput = true;
+                myProcess.StartInfo.RedirectStandardInput = true;
+                myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.Start();
+                myProcess.StandardInput.WriteLine("/c exit");
+                string output = myProcess.StandardOutput.ReadToEnd();
+                MessageBox.Show(output);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

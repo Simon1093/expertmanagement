@@ -1,0 +1,544 @@
+[
+  {
+    "verticle": "751925",
+    "connections": [
+      {
+        "connectedTo": "11106290",
+        "strength": 0.333333333333333
+      }
+    ]
+  },
+  {
+    "verticle": "752938",
+    "connections": [
+      {
+        "connectedTo": "3841579",
+        "strength": 0.0625
+      },
+      {
+        "connectedTo": "7517015",
+        "strength": 0.0625
+      },
+      {
+        "connectedTo": "19122769",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "25978814",
+        "strength": 0.2
+      },
+      {
+        "connectedTo": "36478377",
+        "strength": 0.037037037037037
+      },
+      {
+        "connectedTo": "55440323",
+        "strength": 0.025
+      },
+      {
+        "connectedTo": "89631190",
+        "strength": 0.0555555555555556
+      },
+      {
+        "connectedTo": "102726121",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "154298703",
+        "strength": 0.0263157894736842
+      },
+      {
+        "connectedTo": "197760942",
+        "strength": 0.25
+      },
+      {
+        "connectedTo": "253282110",
+        "strength": 0.2
+      },
+      {
+        "connectedTo": "258638951",
+        "strength": 0.0294117647058824
+      },
+      {
+        "connectedTo": "302218357",
+        "strength": 0.125
+      },
+      {
+        "connectedTo": "304150551",
+        "strength": 0.142857142857143
+      }
+    ]
+  },
+  {
+    "verticle": "1012483",
+    "connections": [
+      {
+        "connectedTo": "4352145",
+        "strength": 0.0277777777777778
+      },
+      {
+        "connectedTo": "24886908",
+        "strength": 0.04
+      },
+      {
+        "connectedTo": "41113017",
+        "strength": 0.0714285714285714
+      },
+      {
+        "connectedTo": "59949877",
+        "strength": 0.0344827586206897
+      }
+    ]
+  },
+  {
+    "verticle": "1301139",
+    "connections": [
+      {
+        "connectedTo": "4352145",
+        "strength": 0.0277777777777778
+      },
+      {
+        "connectedTo": "8137877",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "18262062",
+        "strength": 0.0625
+      },
+      {
+        "connectedTo": "38484314",
+        "strength": 0.142857142857143
+      },
+      {
+        "connectedTo": "43771406",
+        "strength": 0.05
+      },
+      {
+        "connectedTo": "59949877",
+        "strength": 0.0344827586206897
+      },
+      {
+        "connectedTo": "68970646",
+        "strength": 0.111111111111111
+      },
+      {
+        "connectedTo": "97509924",
+        "strength": 0.027027027027027
+      },
+      {
+        "connectedTo": "112951875",
+        "strength": 0.1
+      },
+      {
+        "connectedTo": "139918729",
+        "strength": 0.0555555555555556
+      },
+      {
+        "connectedTo": "216951459",
+        "strength": 0.0714285714285714
+      },
+      {
+        "connectedTo": "267053308",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "308471205",
+        "strength": 0.0416666666666667
+      }
+    ]
+  },
+  {
+    "verticle": "1847564",
+    "connections": [
+      {
+        "connectedTo": "12858609",
+        "strength": 0.333333333333333
+      },
+      {
+        "connectedTo": "19122769",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "19935741",
+        "strength": 0.0256410256410256
+      },
+      {
+        "connectedTo": "25497737",
+        "strength": 0.1
+      }
+    ]
+  },
+  {
+    "verticle": "2821911",
+    "connections": [
+      {
+        "connectedTo": "3685540",
+        "strength": 0.111111111111111
+      },
+      {
+        "connectedTo": "4352145",
+        "strength": 0.0277777777777778
+      },
+      {
+        "connectedTo": "5393427",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "5593145",
+        "strength": 0.0588235294117647
+      },
+      {
+        "connectedTo": "19196186",
+        "strength": 0.0277777777777778
+      },
+      {
+        "connectedTo": "19935741",
+        "strength": 0.0256410256410256
+      },
+      {
+        "connectedTo": "29856358",
+        "strength": 0.0555555555555556
+      },
+      {
+        "connectedTo": "33197952",
+        "strength": 0.0169491525423729
+      },
+      {
+        "connectedTo": "48714586",
+        "strength": 0.0769230769230769
+      },
+      {
+        "connectedTo": "51946173",
+        "strength": 0.333333333333333
+      },
+      {
+        "connectedTo": "58344918",
+        "strength": 0.25
+      },
+      {
+        "connectedTo": "64815247",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "70836365",
+        "strength": 0.0833333333333333
+      },
+      {
+        "connectedTo": "91245962",
+        "strength": 0.0232558139534884
+      },
+      {
+        "connectedTo": "117764991",
+        "strength": 0.024390243902439
+      },
+      {
+        "connectedTo": "135015052",
+        "strength": 0.142857142857143
+      },
+      {
+        "connectedTo": "143279883",
+        "strength": 0.0333333333333333
+      },
+      {
+        "connectedTo": "154298703",
+        "strength": 0.0263157894736842
+      },
+      {
+        "connectedTo": "170942070",
+        "strength": 0.0344827586206897
+      },
+      {
+        "connectedTo": "212857585",
+        "strength": 0.5
+      },
+      {
+        "connectedTo": "249650306",
+        "strength": 0.0263157894736842
+      },
+      {
+        "connectedTo": "266596097",
+        "strength": 0.0909090909090909
+      },
+      {
+        "connectedTo": "282874614",
+        "strength": 0.0434782608695652
+      }
+    ]
+  },
+  {
+    "verticle": "3069441",
+    "connections": [
+      {
+        "connectedTo": "11881029",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "16391909",
+        "strength": 0.0769230769230769
+      },
+      {
+        "connectedTo": "16720003",
+        "strength": 0.125
+      },
+      {
+        "connectedTo": "16872676",
+        "strength": 0.125
+      },
+      {
+        "connectedTo": "24886908",
+        "strength": 0.04
+      },
+      {
+        "connectedTo": "38484314",
+        "strength": 0.142857142857143
+      },
+      {
+        "connectedTo": "43771406",
+        "strength": 0.05
+      },
+      {
+        "connectedTo": "48714586",
+        "strength": 0.0769230769230769
+      },
+      {
+        "connectedTo": "68970646",
+        "strength": 0.111111111111111
+      },
+      {
+        "connectedTo": "97509924",
+        "strength": 0.027027027027027
+      },
+      {
+        "connectedTo": "98577692",
+        "strength": 0.0588235294117647
+      },
+      {
+        "connectedTo": "122228308",
+        "strength": 0.25
+      },
+      {
+        "connectedTo": "178242973",
+        "strength": 0.111111111111111
+      }
+    ]
+  },
+  {
+    "verticle": "3685540",
+    "connections": [
+      {
+        "connectedTo": "2821911",
+        "strength": 0.0476190476190476
+      },
+      {
+        "connectedTo": "15302685",
+        "strength": 0.142857142857143
+      },
+      {
+        "connectedTo": "16917023",
+        "strength": 0.0217391304347826
+      },
+      {
+        "connectedTo": "19935741",
+        "strength": 0.0256410256410256
+      },
+      {
+        "connectedTo": "32200853",
+        "strength": 0.0384615384615385
+      },
+      {
+        "connectedTo": "97509924",
+        "strength": 0.027027027027027
+      },
+      {
+        "connectedTo": "143279883",
+        "strength": 0.0333333333333333
+      },
+      {
+        "connectedTo": "170942070",
+        "strength": 0.0344827586206897
+      },
+      {
+        "connectedTo": "172039608",
+        "strength": 0.0909090909090909
+      }
+    ]
+  },
+  {
+    "verticle": "3841579",
+    "connections": [
+      {
+        "connectedTo": "752938",
+        "strength": 0.0714285714285714
+      },
+      {
+        "connectedTo": "5467921",
+        "strength": 0.0263157894736842
+      },
+      {
+        "connectedTo": "6947200",
+        "strength": 0.04
+      },
+      {
+        "connectedTo": "7517015",
+        "strength": 0.0625
+      },
+      {
+        "connectedTo": "11235093",
+        "strength": 0.024390243902439
+      },
+      {
+        "connectedTo": "18378954",
+        "strength": 0.05
+      },
+      {
+        "connectedTo": "24886908",
+        "strength": 0.04
+      },
+      {
+        "connectedTo": "25978814",
+        "strength": 0.2
+      },
+      {
+        "connectedTo": "33197952",
+        "strength": 0.0169491525423729
+      },
+      {
+        "connectedTo": "91245962",
+        "strength": 0.0232558139534884
+      },
+      {
+        "connectedTo": "98460037",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "102726121",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "122228308",
+        "strength": 0.25
+      },
+      {
+        "connectedTo": "209527135",
+        "strength": 0.0344827586206897
+      },
+      {
+        "connectedTo": "258638951",
+        "strength": 0.0294117647058824
+      },
+      {
+        "connectedTo": "302218357",
+        "strength": 0.125
+      },
+      {
+        "connectedTo": "308471205",
+        "strength": 0.0416666666666667
+      }
+    ]
+  },
+  {
+    "verticle": "4135661",
+    "connections": [
+      {
+        "connectedTo": "8783991",
+        "strength": 0.0416666666666667
+      },
+      {
+        "connectedTo": "16182569",
+        "strength": 0.032258064516129
+      },
+      {
+        "connectedTo": "17170857",
+        "strength": 0.0416666666666667
+      },
+      {
+        "connectedTo": "17500930",
+        "strength": 0.0384615384615385
+      },
+      {
+        "connectedTo": "26546314",
+        "strength": 0.0476190476190476
+      },
+      {
+        "connectedTo": "27578340",
+        "strength": 0.0588235294117647
+      },
+      {
+        "connectedTo": "34332684",
+        "strength": 0.04
+      },
+      {
+        "connectedTo": "36621371",
+        "strength": 0.0384615384615385
+      },
+      {
+        "connectedTo": "40008266",
+        "strength": 0.04
+      },
+      {
+        "connectedTo": "41714856",
+        "strength": 0.125
+      },
+      {
+        "connectedTo": "57586870",
+        "strength": 0.0434782608695652
+      },
+      {
+        "connectedTo": "65557332",
+        "strength": 0.0454545454545455
+      },
+      {
+        "connectedTo": "67046555",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "67929358",
+        "strength": 0.0555555555555556
+      },
+      {
+        "connectedTo": "68242490",
+        "strength": 0.0714285714285714
+      },
+      {
+        "connectedTo": "71109007",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "95269496",
+        "strength": 0.0357142857142857
+      },
+      {
+        "connectedTo": "96378527",
+        "strength": 0.05
+      },
+      {
+        "connectedTo": "100856606",
+        "strength": 0.166666666666667
+      },
+      {
+        "connectedTo": "103200333",
+        "strength": 0.0416666666666667
+      },
+      {
+        "connectedTo": "109551303",
+        "strength": 0.0526315789473684
+      },
+      {
+        "connectedTo": "112780205",
+        "strength": 0.0384615384615385
+      },
+      {
+        "connectedTo": "134106926",
+        "strength": 0.0476190476190476
+      },
+      {
+        "connectedTo": "150266784",
+        "strength": 0.0476190476190476
+      },
+      {
+        "connectedTo": "216800252",
+        "strength": 0.05
+      }
+    ]
+  }
+]
