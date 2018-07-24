@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Automatic.Graph.Layout</id>
+    <version>1.0.0</version>
+    <title>Microsoft.Automatic.Graph.Layout</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>https://github.com/Microsoft/automatic-graph-layout/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Microsoft/automatic-graph-layout</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>MSAGL is a .NET tool for graph layout and viewing.</description>
+    <summary />
+    <copyright>Copyright Microsoft Corporation</copyright>
+    <language>en-US</language>
+    <tags>MSAGL Graph Layout</tags>
+  </metadata>
+</package>
