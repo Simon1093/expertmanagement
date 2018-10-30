@@ -52,6 +52,9 @@
     <Reference Include="Microsoft.Msagl.GraphViewerGdi">
       <HintPath>..\packages\Microsoft.Research.DryadLINQ.MSAGL.3.0.0.1\lib\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
     </Reference>
+    <Reference Include="MoreLinq.Portable">
+      <HintPath>..\packages\MoreLinq.Portable.1.4.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -91,6 +94,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputRecognizer\ColumnMatrixHelper.cs" />
+    <Compile Include="InputRecognizer\FileManager.cs" />
+    <Compile Include="InputRecognizer\Helper.cs" />
+    <Compile Include="InputRecognizer\InputMatrixParser.cs" />
+    <Compile Include="InputRecognizer\LineMatrixHelper.cs" />
+    <Compile Include="InputRecognizer\SquareMatrixHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -109,7 +118,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\Airplane.datasource" />
     <None Include="Properties\DataSources\PrimaryGraph+Verticle.datasource" />
     <None Include="Properties\DataSources\PrimaryGraph.datasource" />
@@ -129,6 +140,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
