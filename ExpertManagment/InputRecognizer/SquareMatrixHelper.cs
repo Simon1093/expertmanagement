@@ -20,7 +20,6 @@ class SquareMatrixHelper
             {
                 matrixLines.Add(matrixLine);
                 matrixLine = "";
-
             }
             else if (inputMatrix[i] != '\r' && inputMatrix[i] != '\n')
             {
@@ -55,7 +54,6 @@ class SquareMatrixHelper
             {
                 connections.Add(new ConnectionsJson { from = i, to = j, value = Helper.ConvertToDouble(matrixData[i][j]) });
             }
-
         }
 
         matrixJson.Add(new MatrixJson { n = matrixData.Count, name = fileName, connections = connections });
@@ -142,12 +140,9 @@ class SquareMatrixHelper
         {
             if (YHatRemoveId != -1)
             {
-                //matrixData[i] = matrixData[i].Where((w) => w != matrixData[i][YHatRemoveId]).ToArray();
-
                 List<string> tmp = new List<string>(matrixData[i]);
                 tmp.RemoveAt(YHatRemoveId);
                 matrixData[i] = tmp.ToArray();
-               // matrixData[i].RemoveAt(YHatRemoveId);
             }
         }
     
@@ -203,7 +198,6 @@ class SquareMatrixHelper
             {
                 delimiters.Add(inputMatrix[i]);
             }
-
         }
 
         return delimiters;
@@ -233,7 +227,6 @@ class SquareMatrixHelper
         }
 
         string mostPopularDelimiter = SelectPopularDelimiter(delimiters);
-
         return mostPopularDelimiter;
     }
 

@@ -67,43 +67,17 @@ namespace ExpertManagment
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             contextMenuStrip1.Show(button1, new System.Drawing.Point(0, button1.Height));
         }
 
-        private void oPENToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            richTextBox1.Text = "";
-            if (listBox1.SelectedItem != null)
-            {
-                string[] verticleSplit = listBox1.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-                int verticleNumber = Int32.Parse(verticleSplit[0]) - 1;
-                label2.Text = "Verticle " + '"' + verticleSplit[1] + '"' + " connections:";
-                for (int i = 0; i < loaded_graph[verticleNumber].connections.Count; i++)
-                {
-                    if (i > 0) richTextBox1.Text += '\n';
-                    richTextBox1.Text += "Verticle: " + '"' + loaded_graph[verticleNumber].connections[i].connectedTo + '"' + " / Strength = " + '"' + loaded_graph[verticleNumber].connections[i].strength + '"';
-                }
-            }
-        }
-
+        //Add verticle
         private void button5_Click(object sender, EventArgs e)
         {
             listBox2.Items.Clear();
@@ -120,36 +94,7 @@ namespace ExpertManagment
             textBox2.Clear();
         }
 
-        private void renderVerticles()
-        {
-            for (int i = 0; i < new_graph.Count; i++)
-            {
-                listBox2.Items.Add(new_graph[i].verticle_id + ") " + new_graph[i].verticle);
-                comboBox1.Items.Add(new_graph[i].verticle_id + ") " + new_graph[i].verticle);
-                comboBox2.Items.Add(new_graph[i].verticle_id + ") " + new_graph[i].verticle);
-            }
-        }
-
-        private void textBox2_KeyPressed(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
-            checkEnableAddVerticle();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            checkEnableAddVerticle();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            checkEnableAddVerticle();
-        }
-
+        //Save...
         private void button6_Click(object sender, EventArgs e)
         {
             string message = string.Empty;
@@ -164,30 +109,6 @@ namespace ExpertManagment
             }
 
             MessageBox.Show("Selected Values" + message);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.Text != null)
-            {
-                button7.Enabled = true;
-            }
-            else
-            {
-                button7.Enabled = false;
-            }
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox2.Text != null)
-            {
-                button8.Enabled = true;
-            }
-            else
-            {
-                button8.Enabled = false;
-            }
         }
 
         //Add influence factor
@@ -206,126 +127,7 @@ namespace ExpertManagment
             renderPrimaryGraphBinding();
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-             enableAddVerticle(true);
-            renderPrimaryGraphBinding();
-        }
-
-        private void addFactor(string type)
-        {
-            if (type == "influence")
-            {
-                string[] verticleSplitAdd = comboBox1.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-                int verticleNumberAdd = Int32.Parse(verticleSplitAdd[0]);
-
-                string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-                int verticleNumber = Int32.Parse(verticleSplit[0]);
-
-                for (int i = 0; i < new_graph.Count; i++)
-                {
-                    if (new_graph[i].verticle_id == verticleSplit[0])
-                    {
-                        new_graph[i].connections.Add(new PrimaryGraph.Connections { connectedTo = verticleNumberAdd.ToString(), strength = 0 });
-                    }
-                }
-            }
-            else if (type == "impact")
-            {
-                string[] verticleSplitAdd = comboBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-                int verticleNumberAdd = Int32.Parse(verticleSplitAdd[0]);
-
-                string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-                int verticleNumber = Int32.Parse(verticleSplit[0]);
-
-                for (int i = 0; i < new_graph.Count; i++)
-                {
-                    if (new_graph[i].verticle_id == verticleSplitAdd[0])
-                    {
-                        new_graph[i].connections.Add(new PrimaryGraph.Connections { connectedTo = verticleNumber.ToString(), strength = 0 });
-                    }
-                }
-            }
-        }
-        private void renderGraph()
-        {
-            panel1.Controls.Clear();
-            string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-            GraphBuilder graphBuilder = new GraphBuilder();
-            Microsoft.Msagl.GraphViewerGdi.GViewer graphView = graphBuilder.BuildGraph(new_graph, verticleSplit[0]);
-            panel1.SuspendLayout();
-            graphView.Dock = System.Windows.Forms.DockStyle.Fill;
-            panel1.Controls.Add(graphView);
-            panel1.ResumeLayout();
-        }
-
-        private void renderPrimaryGraphBinding()
-        {
-            //Show influence
-            primaryGraphBindingSource.Clear();
-            string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
-            int verticleNumber = Int32.Parse(verticleSplit[0]);
-
-            for (int j = 0; j < new_graph.Count; j++)
-            {
-                if (verticleSplit[0] == new_graph[j].verticle_id)
-                    for (int i = 0; i < new_graph[j].connections.Count; i++)
-                    {
-                        string connected_to = new_graph[j].connections[i].connectedTo;
-                        for (int k = 0; k < new_graph.Count; k++)
-                        {
-                            if (new_graph[k].verticle_id == connected_to && new_graph[j].verticle != null)
-                                primaryGraphBindingSource.Add(new PrimaryGraph(
-                                    new_graph[k].verticle,
-                                    connected_to,
-                                    new_graph[j].connections[i].strength,
-                                    true
-                                    ));
-                        }
-                    }
-            }
-
-            //Show impact
-            primaryGraphBindingSource1.Clear();
-            for (int i = 0; i < new_graph.Count; i++)
-            {
-                for (int j = 0; j < new_graph[i].connections.Count; j++)
-                {
-                    if (new_graph[i].connections[j].connectedTo == verticleNumber.ToString())
-                    {
-                        string verticle_id = new_graph[i].verticle_id;
-                        string verticle = new_graph[i].verticle;
-                        if (verticle != null)
-                            primaryGraphBindingSource1.Add(new PrimaryGraph(
-                                verticle,
-                                verticle_id,
-                                new_graph[i].connections[j].strength,
-                                true
-                                ));
-                    }
-                }
-            }
-            renderGraph();
-        }
-
-        private void enableAddVerticle(bool enable)
-        {
-            comboBox1.Enabled = enable;
-            comboBox2.Enabled = enable;
-        }
-
-        private void checkEnableAddVerticle()
-        {
-            if (textBox1.Text != "" && textBox2.Text != "")
-            {
-                button5.Enabled = true;
-            }
-            else
-            {
-                button5.Enabled = false;
-            }
-        }
-
+        //Load matrix file
         private void button9_Click(object sender, EventArgs e)
         {
             listBox2.Items.Clear();
@@ -359,6 +161,86 @@ namespace ExpertManagment
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        //Show full graph
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var form2 = new Form2(new_graph);
+            form2.Show();
+        }
+
+        //Run math algorithm
+        private void button11_Click(object sender, EventArgs e)
+        {
+            string data = Classes.MathModuleController.rumModule();
+            MessageBox.Show(data);
+        }
+
+        //Load input data sample
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void oPENToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            checkEnableAddVerticle();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            checkEnableAddVerticle();
+        }
+
+        private void textBox2_KeyPressed(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            checkEnableAddVerticle();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != null)
+            {
+                button7.Enabled = true;
+            }
+            else
+            {
+                button7.Enabled = false;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.Text != null)
+            {
+                button8.Enabled = true;
+            }
+            else
+            {
+                button8.Enabled = false;
+            }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             enableAddVerticle(true);
+            renderPrimaryGraphBinding();
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -520,35 +402,128 @@ namespace ExpertManagment
 
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void addFactor(string type)
         {
-            var form2 = new Form2(new_graph);
-            form2.Show();
-        }
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-            Process myProcess = new Process();
-            string parameters = "";
-            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c pq.exe");
-            try
+            if (type == "influence")
             {
-                processInfo.UseShellExecute = false;
-                processInfo.WorkingDirectory = base_dir + "\\Mixing\\Example\\";
+                string[] verticleSplitAdd = comboBox1.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+                int verticleNumberAdd = Int32.Parse(verticleSplitAdd[0]);
 
-                myProcess.StartInfo = processInfo;
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.RedirectStandardOutput = true;
-                myProcess.StartInfo.RedirectStandardInput = true;
-                myProcess.StartInfo.CreateNoWindow = true;
-                myProcess.Start();
-                myProcess.StandardInput.WriteLine("/c exit");
-                string output = myProcess.StandardOutput.ReadToEnd();
-                MessageBox.Show(output);
+                string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+                int verticleNumber = Int32.Parse(verticleSplit[0]);
+
+                for (int i = 0; i < new_graph.Count; i++)
+                {
+                    if (new_graph[i].verticle_id == verticleSplit[0])
+                    {
+                        new_graph[i].connections.Add(new PrimaryGraph.Connections { connectedTo = verticleNumberAdd.ToString(), strength = 0 });
+                    }
+                }
             }
-            catch (Exception ex)
+            else if (type == "impact")
             {
-                MessageBox.Show(ex.Message);
+                string[] verticleSplitAdd = comboBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+                int verticleNumberAdd = Int32.Parse(verticleSplitAdd[0]);
+
+                string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+                int verticleNumber = Int32.Parse(verticleSplit[0]);
+
+                for (int i = 0; i < new_graph.Count; i++)
+                {
+                    if (new_graph[i].verticle_id == verticleSplitAdd[0])
+                    {
+                        new_graph[i].connections.Add(new PrimaryGraph.Connections { connectedTo = verticleNumber.ToString(), strength = 0 });
+                    }
+                }
+            }
+        }
+
+        private void renderVerticles()
+        {
+            for (int i = 0; i < new_graph.Count; i++)
+            {
+                listBox2.Items.Add(new_graph[i].verticle_id + ") " + new_graph[i].verticle);
+                comboBox1.Items.Add(new_graph[i].verticle_id + ") " + new_graph[i].verticle);
+                comboBox2.Items.Add(new_graph[i].verticle_id + ") " + new_graph[i].verticle);
+            }
+        }
+
+        private void renderGraph()
+        {
+            panel1.Controls.Clear();
+            string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+            GraphBuilder graphBuilder = new GraphBuilder();
+            Microsoft.Msagl.GraphViewerGdi.GViewer graphView = graphBuilder.BuildGraph(new_graph, verticleSplit[0]);
+            panel1.SuspendLayout();
+            graphView.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Controls.Add(graphView);
+            panel1.ResumeLayout();
+        }
+
+        private void renderPrimaryGraphBinding()
+        {
+            //Show influence
+            primaryGraphBindingSource.Clear();
+            string[] verticleSplit = listBox2.SelectedItem.ToString().Split(new[] { ") " }, StringSplitOptions.None);
+            int verticleNumber = Int32.Parse(verticleSplit[0]);
+
+            for (int j = 0; j < new_graph.Count; j++)
+            {
+                if (verticleSplit[0] == new_graph[j].verticle_id)
+                    for (int i = 0; i < new_graph[j].connections.Count; i++)
+                    {
+                        string connected_to = new_graph[j].connections[i].connectedTo;
+                        for (int k = 0; k < new_graph.Count; k++)
+                        {
+                            if (new_graph[k].verticle_id == connected_to && new_graph[j].verticle != null)
+                                primaryGraphBindingSource.Add(new PrimaryGraph(
+                                    new_graph[k].verticle,
+                                    connected_to,
+                                    new_graph[j].connections[i].strength,
+                                    true
+                                    ));
+                        }
+                    }
+            }
+
+            //Show impact
+            primaryGraphBindingSource1.Clear();
+            for (int i = 0; i < new_graph.Count; i++)
+            {
+                for (int j = 0; j < new_graph[i].connections.Count; j++)
+                {
+                    if (new_graph[i].connections[j].connectedTo == verticleNumber.ToString())
+                    {
+                        string verticle_id = new_graph[i].verticle_id;
+                        string verticle = new_graph[i].verticle;
+                        if (verticle != null)
+                            primaryGraphBindingSource1.Add(new PrimaryGraph(
+                                verticle,
+                                verticle_id,
+                                new_graph[i].connections[j].strength,
+                                true
+                                ));
+                    }
+                }
+            }
+            renderGraph();
+        }
+
+        private void enableAddVerticle(bool enable)
+        {
+            comboBox1.Enabled = enable;
+            comboBox2.Enabled = enable;
+        }
+
+        private void checkEnableAddVerticle()
+        {
+            if (textBox1.Text != "" && textBox2.Text != "")
+            {
+                button5.Enabled = true;
+            }
+            else
+            {
+                button5.Enabled = false;
             }
         }
     }

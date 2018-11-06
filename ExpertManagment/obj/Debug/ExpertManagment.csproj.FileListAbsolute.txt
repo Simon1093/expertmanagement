@@ -24,3 +24,7 @@ C:\Users\Simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManag
 C:\Users\Simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
 C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\MoreLinq.Portable.dll
 C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\MoreLinq.Portable.xml
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\protobuf-net.dll
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\protobuf-net.pdb
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\protobuf-net.xml
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\YamlDotNet.xml

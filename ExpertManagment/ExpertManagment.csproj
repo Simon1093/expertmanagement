@@ -52,7 +52,8 @@
     <Reference Include="Microsoft.Msagl.GraphViewerGdi">
       <HintPath>..\packages\Microsoft.Research.DryadLINQ.MSAGL.3.0.0.1\lib\Microsoft.Msagl.GraphViewerGdi.dll</HintPath>
     </Reference>
-    <Reference Include="MoreLinq.Portable">
+    <Reference Include="MoreLinq.Portable, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MoreLinq.Portable.1.4.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -64,6 +65,9 @@
     </Reference>
     <Reference Include="NodaTime">
       <HintPath>..\packages\NodaTime.1.3.4\lib\net35-Client\NodaTime.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\..\WindowsFormsApplication2\WindowsFormsApplication2\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,9 +81,14 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=4.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\GraphBuilder.cs" />
+    <Compile Include="Classes\MathModuleController.cs" />
     <Compile Include="Classes\PrimaryGraph.cs" />
     <Compile Include="Classes\MatrixParser.cs" />
     <Compile Include="Form1.cs">
@@ -94,6 +103,11 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputGenerator\FileManager.cs" />
+    <Compile Include="InputGenerator\Generator.cs" />
+    <Compile Include="InputGenerator\Helper.cs" />
+    <Compile Include="InputGenerator\MatrixJSONParser.cs" />
+    <Compile Include="InputGenerator\RuleParser.cs" />
     <Compile Include="InputRecognizer\ColumnMatrixHelper.cs" />
     <Compile Include="InputRecognizer\FileManager.cs" />
     <Compile Include="InputRecognizer\Helper.cs" />
