@@ -39,8 +39,7 @@ class SquareMatrixHelper
             matrixData.Add(lineData);
         }
 
-        bool matrixHat = true;
-        matrixData = CutOffData(matrixData, matrixHat);
+        matrixData = CutOffData(matrixData);
 
         return matrixData;
     }
@@ -78,17 +77,12 @@ class SquareMatrixHelper
         return connections;
     }
 
-    static List<string[]> CutOffData(List<string[]> matrixData, bool matrixHat)
+    static List<string[]> CutOffData(List<string[]> matrixData)
     {
         int[] numbersCount = new int[matrixData.Count];
         for (int i = 0; i < matrixData.Count; i++)
         {
             numbersCount[i] = matrixData[i].Length;
-        }
-
-        if (matrixHat)
-        {
-            List<string> matrixHat = GetMatrixHat(matrixData);
         }
 
         int maxNumers = numbersCount.Max();
@@ -117,7 +111,51 @@ class SquareMatrixHelper
         return matrixData;
     }
 
-    static List<string> GetMatrixHat(List<string[]> matrixData)
+    public static List<string[]> CutMatrixHat(List<string[]> matrixData, List<string> matrixHat)
+    {
+        int XHatRemoveId = -1; // xAxis id remove
+        int YHatRemoveId = -1; // yAxis id remove
+        for (int i = 0; i < matrixData.Count; i++)
+        {
+            for (int j = 0; j < matrixData[i].Length; j++)
+            {
+                for (int n = 0; n < matrixHat.Count; n++)
+                {
+                    if (matrixHat[n] == matrixData[i][j] && XHatRemoveId == -1)
+                    {
+                        XHatRemoveId = i;
+                    }
+                    if (matrixHat[n] == matrixData[i][j] && YHatRemoveId == -1 && XHatRemoveId != i)
+                    {
+                        YHatRemoveId = j;
+                    } 
+                }
+            }
+        }
+
+        if (XHatRemoveId != -1)
+        {
+            matrixData.RemoveAt(XHatRemoveId);
+        }
+
+        for (int i = 0; i < matrixData.Count; i++)
+        {
+            if (YHatRemoveId != -1)
+            {
+                //matrixData[i] = matrixData[i].Where((w) => w != matrixData[i][YHatRemoveId]).ToArray();
+
+                List<string> tmp = new List<string>(matrixData[i]);
+                tmp.RemoveAt(YHatRemoveId);
+                matrixData[i] = tmp.ToArray();
+               // matrixData[i].RemoveAt(YHatRemoveId);
+            }
+        }
+    
+        return matrixData;
+    }
+
+
+    public static List<string> GetMatrixHat(List<string[]> matrixData)
     {
         List<string> hatVertical = new List<string>();
         List<string> hatHorizontal = new List<string>();
@@ -143,11 +181,13 @@ class SquareMatrixHelper
             {
                 if (hatVertical[i] != hatHorizontal[i])
                 {
-                    throw new Exception("Matrix Hat Is Not Valid!");
+                    //throw new Exception("Matrix Hat Is Not Valid!");
+                    return null;
                 }
             }
         } else {
-             throw new Exception("Matrix Hat Is Not Valid!");
+             //throw new Exception("Matrix Hat Is Not Valid!");
+            return null;
         }
 
         return hatHorizontal;

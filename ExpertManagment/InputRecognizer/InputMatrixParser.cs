@@ -14,6 +14,11 @@ public class InputMatrixParser
         char separator = SquareMatrixHelper.SelectPopularSeparator(separators);
         string delimiter = SquareMatrixHelper.GetDelimiter(separator, inputMatrix);
         List<string[]> matrixData = SquareMatrixHelper.GetMatrixData(inputMatrix, delimiter);
+        List<string> matrixHat = SquareMatrixHelper.GetMatrixHat(matrixData);
+        if (matrixHat != null)
+        {
+            matrixData = SquareMatrixHelper.CutMatrixHat(matrixData, matrixHat);
+        }
         int startLine = SquareMatrixHelper.GetStartLine(matrixData, delimiter, inputMatrix);
         List<ConnectionsJson> connections = SquareMatrixHelper.MatrixConnections(matrixData);
 
@@ -24,20 +29,29 @@ public class InputMatrixParser
         {
             PrimaryGraph.Verticle v = new PrimaryGraph.Verticle();
             v.verticle_id = (grp.Key + 1).ToString();
+            if (matrixHat != null)
+            {
+                v.verticle = matrixHat[grp.Key];
+            }
+            else
+            {
+                v.verticle = (grp.Key + 1).ToString();
+            }
+            List<PrimaryGraph.Connections> cons = new List<PrimaryGraph.Connections>();
             foreach (ConnectionsJson connection in connections)
             {
-                PrimaryGraph.Connections c = new PrimaryGraph.Connections();
-                List<PrimaryGraph.Connections> cons = new List<PrimaryGraph.Connections>();
-                c.connectedTo = connection.to.ToString();
-                c.strength = connection.value;
-                cons.Add(c);
-                v.connections = cons;
+                if (connection.value > 0 && grp.Key == connection.from)
+                {
+                    PrimaryGraph.Connections c = new PrimaryGraph.Connections();
+                    c.connectedTo = (connection.to + 1).ToString();
+                    c.strength = connection.value;
+                    cons.Add(c);
+                }
             }
-
+            v.connections = cons;
             graph.Add(v);
+
         }
-
-
 
         //List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
         //string jsonMatrix = SquareMatrixHelper.MatrixToJson(matrixData, fileName); 

@@ -208,7 +208,7 @@ namespace ExpertManagment
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            enableAddVerticle(true);
+             enableAddVerticle(true);
             renderPrimaryGraphBinding();
         }
 
@@ -350,8 +350,7 @@ namespace ExpertManagment
                         string filename = openFileDialog1.FileName;
                         string fileText = System.IO.File.ReadAllText(filename);
                         MatrixParser parser = new MatrixParser();
-                        List<PrimaryGraph.Verticle> p = InputMatrixParser.ParseSquareMatrix(fileText, filename);
-                        new_graph = parser.ParseMatrix(fileText);
+                        new_graph = InputMatrixParser.ParseSquareMatrix(fileText, filename);
                         renderVerticles();
                     }
                 }
