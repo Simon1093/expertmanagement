@@ -173,8 +173,29 @@ namespace ExpertManagment
         //Run math algorithm
         private void button11_Click(object sender, EventArgs e)
         {
-            string data = Classes.MathModuleController.rumModule();
-            MessageBox.Show(data);
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+            openFileDialog2.Filter = "All Files|*.*";
+            openFileDialog2.FilterIndex = 2;
+            openFileDialog2.RestoreDirectory = true;
+            Stream myStream = null;
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog2.OpenFile()) != null)
+                    {
+                        string fileName = openFileDialog2.SafeFileName;
+                        string filePath = Path.GetDirectoryName(openFileDialog2.FileName);
+                        string data = Classes.MathModuleController.rumModule(fileName, filePath);
+                        richTextBox1.Text = data;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
         }
 
         //Load input data sample
@@ -185,7 +206,7 @@ namespace ExpertManagment
 
         private void oPENToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-           
+
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -239,7 +260,7 @@ namespace ExpertManagment
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-             enableAddVerticle(true);
+            enableAddVerticle(true);
             renderPrimaryGraphBinding();
         }
 

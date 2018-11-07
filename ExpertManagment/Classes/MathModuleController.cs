@@ -9,16 +9,15 @@ namespace ExpertManagment.Classes
 {
     public class MathModuleController
     {
-        public static string rumModule() {
+        public static string rumModule(string fileName, string filePath)
+        {
             Process myProcess = new Process();
             string parameters = "";
-            AppDomain domain = AppDomain.CreateDomain("/");
-            string base_dir = domain.BaseDirectory;
-            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c pq.exe");
+            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c " + fileName);
             try
             {
                 processInfo.UseShellExecute = false;
-                processInfo.WorkingDirectory = base_dir + "\\Mixing\\Example\\";
+                processInfo.WorkingDirectory = filePath;
 
                 myProcess.StartInfo = processInfo;
                 myProcess.StartInfo.UseShellExecute = false;
