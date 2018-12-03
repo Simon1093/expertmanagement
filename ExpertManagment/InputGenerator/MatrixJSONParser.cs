@@ -12,10 +12,10 @@ namespace input_generator.Classes
     {
         //public static dynamic ParseMatrix(string MatrixJSON)
         //{
-        //    dynamic elements = JsonConvert.DeserializeObject(MatrixJSON);
-        //    string matrix = JsonConvert.SerializeObject(elements[0]);
-        //    var dynObj = JsonConvert.DeserializeObject<MatrixJson>(matrix);
-        //    return dynObj;
+        //    //dynamic elements = JsonConvert.DeserializeObject(MatrixJSON);
+        //    //string matrix = JsonConvert.SerializeObject(elements[0]);
+        //    //var dynObj = JsonConvert.DeserializeObject<MatrixJson>(matrix);
+        //    //return dynObj;
         //}
 
     }

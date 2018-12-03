@@ -242,7 +242,7 @@ class ColumnMatrixHelper
         return matrixData;
     }
 
-    public static string MatrixToJson(List<string[]> matrixData, string fileName)
+    public static List<MatrixJson> MatrixToJson(List<string[]> matrixData, string fileName)
     {
         List<MatrixJson> matrixJson = new List<MatrixJson>();
         List<ConnectionsJson> connections = new List<ConnectionsJson>();
@@ -254,7 +254,7 @@ class ColumnMatrixHelper
 
         matrixJson.Add(new MatrixJson { n = matrixData.Count, name = fileName, connections = connections });
 
-        return JsonConvert.SerializeObject(matrixJson);
+        return matrixJson;
     }
 }
 

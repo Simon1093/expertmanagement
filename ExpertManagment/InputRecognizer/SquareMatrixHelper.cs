@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using MoreLinq;
 using Newtonsoft.Json;
 using System.IO;
+using YamlDotNet.RepresentationModel;
+using YamlDotNet.Helpers;
 
 
 class SquareMatrixHelper
@@ -43,7 +45,7 @@ class SquareMatrixHelper
         return matrixData;
     }
 
-    public static string MatrixToJson(List<string[]> matrixData, string fileName)
+    public static List<MatrixJson> MatrixToJson(List<string[]> matrixData, string fileName)
     {
         List<MatrixJson> matrixJson = new List<MatrixJson>();
         List<ConnectionsJson> connections = new List<ConnectionsJson>();
@@ -58,7 +60,7 @@ class SquareMatrixHelper
 
         matrixJson.Add(new MatrixJson { n = matrixData.Count, name = fileName, connections = connections });
 
-        return JsonConvert.SerializeObject(matrixJson);
+        return matrixJson;
     }
 
     public static List<ConnectionsJson> MatrixConnections(List<string[]> matrixData)
@@ -374,9 +376,14 @@ public class FullMatrixData
 {
     public char separator;
     public string delimiter;
-    public List<string[]> matrixData;
-    public string matrixJson;
     public int startLine;
+    public string matrixType;
+    public YamlNode notation;
+    public List<string[]> matrixData;
+    public List<PrimaryGraph.Verticle> graph;
+    public List<MatrixJson> matrixJson;
+    public List<GenerationRules> generationRules;
+    public string yamlRules;
 }
 
 public class MatrixJson
@@ -396,4 +403,18 @@ public class ConnectionsJson
     public double value;
 }
 
+public class MatrixToJsonOutput
+{
+    public string matrixJsonString;
+    public List<MatrixJson> matrixJsonObj;
+}
+
+public class GenerationRules
+{
+    public string delimiter;
+    public char separator;
+    public int matrixAtLine;
+    public string type;
+    public YamlNode notation;
+}
 

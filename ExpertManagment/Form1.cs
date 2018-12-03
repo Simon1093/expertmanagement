@@ -11,11 +11,12 @@ using System.IO;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Threading;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using Microsoft.Msagl;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ExpertManagment
 {
@@ -152,7 +153,7 @@ namespace ExpertManagment
                         string filename = openFileDialog1.FileName;
                         string fileText = System.IO.File.ReadAllText(filename);
                         MatrixParser parser = new MatrixParser();
-                        new_graph = InputMatrixParser.ParseSquareMatrix(fileText, filename);
+                        new_graph = InputMatrixParser.ParseSquareMatrix(fileText, filename)[0].graph;
                         renderVerticles();
                     }
                 }
@@ -201,7 +202,68 @@ namespace ExpertManagment
         //Load input data sample
         private void button12_Click(object sender, EventArgs e)
         {
+            Stream myStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Text|*.txt";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        string filename = openFileDialog1.FileName;
+                        string fileText = System.IO.File.ReadAllText(filename);
+                        MatrixParser parser = new MatrixParser();
+                        List<FullMatrixData> parseData = InputMatrixParser.ParseSquareMatrix(fileText, filename);
+                        richTextBox2.Text = parseData[0].yamlRules;
+                        //richTextBox3.Text = JsonConvert.SerializeObject(parseData[0].matrixJson);
 
+                        //GenerationRules ruleData = input_generator.Classes.RuleParser.ParseRules(parseData[0].yamlRules);
+                        //input_generator.Classes.Generator.generateSquareMatrix(ruleData, parseData[0].matrixJson);
+                        //richTextBox4.Text = 
+                        //System.IO.File.WriteAllText("generated-matrix.txt", matrixJson);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        //Load matrix to convert with rules
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Text|*.txt";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    {
+                        string filename = openFileDialog1.FileName;
+                        string fileText = System.IO.File.ReadAllText(filename);
+                        MatrixParser parser = new MatrixParser();
+                        List<FullMatrixData> parseData = InputMatrixParser.ParseSquareMatrix(fileText, filename);
+                        richTextBox3.Text = JsonConvert.SerializeObject(parseData[0].matrixJson);
+
+                        //GenerationRules ruleData = input_generator.Classes.RuleParser.ParseRules(parseData[0].yamlRules);
+                        //input_generator.Classes.Generator.generateSquareMatrix(ruleData, parseData[0].matrixJson);
+                        //richTextBox4.Text = 
+                        //System.IO.File.WriteAllText("generated-matrix.txt", matrixJson);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void oPENToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -547,5 +609,7 @@ namespace ExpertManagment
                 button5.Enabled = false;
             }
         }
+
+
     }
 }

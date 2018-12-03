@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Dynamic;
 using MoreLinq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using YamlDotNet.RepresentationModel;
+using YamlDotNet.Helpers;
 
 public class InputMatrixParser
 {
-    public static List<PrimaryGraph.Verticle> ParseSquareMatrix(string inputMatrix, string fileName)
+    public static List<FullMatrixData> ParseSquareMatrix(string inputMatrix, string fileName)
     {
         List<char> separators = SquareMatrixHelper.FindNumberSeparators(inputMatrix);
         char separator = SquareMatrixHelper.SelectPopularSeparator(separators);
@@ -53,11 +59,15 @@ public class InputMatrixParser
 
         }
 
-        //List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
-        //string jsonMatrix = SquareMatrixHelper.MatrixToJson(matrixData, fileName); 
-        //fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, matrixJson = jsonMatrix, startLine = startLine });
+        List<GenerationRules> generationRules = new List<GenerationRules>();
+        generationRules.Add(new GenerationRules { delimiter = delimiter, matrixAtLine = startLine, separator = separator, type = "square" });
+        string yamlRules = Helper.CollectGenerationRulesToYAML(generationRules);
 
-        return graph;
+        List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
+        List<MatrixJson> jsonMatrix = SquareMatrixHelper.MatrixToJson(matrixData, fileName);
+        fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, startLine = startLine, matrixJson = jsonMatrix, graph = graph, generationRules = generationRules, yamlRules = yamlRules });
+
+        return fullMatrixData;
     }
 
     public static List<FullMatrixData> ParseLineMatrix(string inputMatrix, string fileName)
@@ -69,7 +79,7 @@ public class InputMatrixParser
         int startLine = LineMatrixHelper.GetStartLine(matrixData, delimiter, inputMatrix);
 
         List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
-        string jsonMatrix = LineMatrixHelper.MatrixToJson(matrixData, fileName);
+        List<MatrixJson> jsonMatrix = LineMatrixHelper.MatrixToJson(matrixData, fileName);
 
         fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, matrixJson = jsonMatrix, startLine = startLine });
 
@@ -85,11 +95,14 @@ public class InputMatrixParser
         int startLine = ColumnMatrixHelper.GetStartLine(matrixData, delimiter, inputMatrix);
 
         List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
-        string jsonMatrix = ColumnMatrixHelper.MatrixToJson(matrixData, fileName);
+        List<MatrixJson> jsonMatrix = ColumnMatrixHelper.MatrixToJson(matrixData, fileName);
 
         fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, matrixJson = jsonMatrix, startLine = startLine });
 
         return fullMatrixData;
     }
+
+
+
 }
 

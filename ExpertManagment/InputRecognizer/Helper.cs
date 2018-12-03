@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -87,6 +88,18 @@ class Helper
             }
         }
         return result;
+    }
+
+    public static string CollectGenerationRulesToYAML(List<GenerationRules> generationRules)
+    {
+        OrderedDictionary rules = new OrderedDictionary();
+        rules.Add("Delimiter", generationRules[0].delimiter);
+        rules.Add("Separator", generationRules[0].separator);
+        rules.Add("StartDrawMatrixAtLine", generationRules[0].matrixAtLine);
+        rules.Add("Type", "square");
+        object a = rules;
+        var serializer = new YamlDotNet.Serialization.Serializer();
+        return serializer.Serialize(a);
     }
 }
 
