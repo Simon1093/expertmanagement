@@ -45,9 +45,9 @@ class SquareMatrixHelper
         return matrixData;
     }
 
-    public static List<MatrixJson> MatrixToJson(List<string[]> matrixData, string fileName)
+    public static MatrixJson MatrixToJson(List<string[]> matrixData, string fileName)
     {
-        List<MatrixJson> matrixJson = new List<MatrixJson>();
+        MatrixJson matrixJson = new MatrixJson();
         List<ConnectionsJson> connections = new List<ConnectionsJson>();
 
         for (int i = 0; i < matrixData.Count; i++)
@@ -58,7 +58,9 @@ class SquareMatrixHelper
             }
         }
 
-        matrixJson.Add(new MatrixJson { n = matrixData.Count, name = fileName, connections = connections });
+        matrixJson.connections = connections;
+        matrixJson.n = matrixData.Count;
+        matrixJson.name = fileName;
 
         return matrixJson;
     }
@@ -381,7 +383,7 @@ public class FullMatrixData
     public YamlNode notation;
     public List<string[]> matrixData;
     public List<PrimaryGraph.Verticle> graph;
-    public List<MatrixJson> matrixJson;
+    public MatrixJson matrixJson;
     public List<GenerationRules> generationRules;
     public string yamlRules;
 }
@@ -394,6 +396,18 @@ public class MatrixJson
     public int n;
     [JsonProperty("connections")]
     public List<ConnectionsJson> connections;
+}
+
+interface IMatrixJsonClass
+{
+    string name { get; set; }
+    int n { get; set; }
+    List<ConnectionsJson> connections { get; set; } 
+}
+
+interface IConnectionsClass
+{
+    List<ConnectionsJson> connections { get; set; }
 }
 
 public class ConnectionsJson
@@ -412,7 +426,7 @@ public class MatrixToJsonOutput
 public class GenerationRules
 {
     public string delimiter;
-    public char separator;
+    public string separator;
     public int matrixAtLine;
     public string type;
     public YamlNode notation;

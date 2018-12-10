@@ -141,9 +141,9 @@ class LineMatrixHelper
         return matrixData;
     }
 
-    public static List<MatrixJson> MatrixToJson(List<string[]> matrixData, string fileName)
+    public static MatrixJson MatrixToJson(List<string[]> matrixData, string fileName)
     {
-        List<MatrixJson> matrixJson = new List<MatrixJson>();
+        MatrixJson matrixJson = new MatrixJson();
         List<ConnectionsJson> connections = new List<ConnectionsJson>();
         int matrixRowLength = Convert.ToInt32(Math.Sqrt(matrixData[0].Length));
 
@@ -163,7 +163,9 @@ class LineMatrixHelper
             }
         }
 
-        matrixJson.Add(new MatrixJson { n = matrixRowLength, name = fileName, connections = connections });
+        matrixJson.connections = connections;
+        matrixJson.n = matrixRowLength;
+        matrixJson.name = fileName;
 
         return matrixJson;
     }

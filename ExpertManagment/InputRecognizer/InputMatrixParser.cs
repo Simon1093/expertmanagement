@@ -60,11 +60,11 @@ public class InputMatrixParser
         }
 
         List<GenerationRules> generationRules = new List<GenerationRules>();
-        generationRules.Add(new GenerationRules { delimiter = delimiter, matrixAtLine = startLine, separator = separator, type = "square" });
+        generationRules.Add(new GenerationRules { delimiter = delimiter, matrixAtLine = startLine, separator = separator.ToString(), type = "square", notation = "" });
         string yamlRules = Helper.CollectGenerationRulesToYAML(generationRules);
 
         List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
-        List<MatrixJson> jsonMatrix = SquareMatrixHelper.MatrixToJson(matrixData, fileName);
+        MatrixJson jsonMatrix = SquareMatrixHelper.MatrixToJson(matrixData, fileName);
         fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, startLine = startLine, matrixJson = jsonMatrix, graph = graph, generationRules = generationRules, yamlRules = yamlRules });
 
         return fullMatrixData;
@@ -79,7 +79,7 @@ public class InputMatrixParser
         int startLine = LineMatrixHelper.GetStartLine(matrixData, delimiter, inputMatrix);
 
         List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
-        List<MatrixJson> jsonMatrix = LineMatrixHelper.MatrixToJson(matrixData, fileName);
+        MatrixJson jsonMatrix = LineMatrixHelper.MatrixToJson(matrixData, fileName);
 
         fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, matrixJson = jsonMatrix, startLine = startLine });
 
@@ -95,7 +95,7 @@ public class InputMatrixParser
         int startLine = ColumnMatrixHelper.GetStartLine(matrixData, delimiter, inputMatrix);
 
         List<FullMatrixData> fullMatrixData = new List<FullMatrixData>();
-        List<MatrixJson> jsonMatrix = ColumnMatrixHelper.MatrixToJson(matrixData, fileName);
+        MatrixJson jsonMatrix = ColumnMatrixHelper.MatrixToJson(matrixData, fileName);
 
         fullMatrixData.Add(new FullMatrixData { delimiter = delimiter, separator = separator, matrixData = matrixData, matrixJson = jsonMatrix, startLine = startLine });
 

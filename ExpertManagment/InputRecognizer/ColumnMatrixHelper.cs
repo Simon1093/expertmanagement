@@ -242,9 +242,9 @@ class ColumnMatrixHelper
         return matrixData;
     }
 
-    public static List<MatrixJson> MatrixToJson(List<string[]> matrixData, string fileName)
+    public static MatrixJson MatrixToJson(List<string[]> matrixData, string fileName)
     {
-        List<MatrixJson> matrixJson = new List<MatrixJson>();
+        MatrixJson matrixJson = new MatrixJson();
         List<ConnectionsJson> connections = new List<ConnectionsJson>();
 
         for (int i = 0; i < matrixData.Count; i++)
@@ -252,7 +252,9 @@ class ColumnMatrixHelper
             connections.Add(new ConnectionsJson { from = Int32.Parse(matrixData[i][0]), to = Int32.Parse(matrixData[i][1]), value = Helper.ConvertToDouble(matrixData[i][2]) });
         }
 
-        matrixJson.Add(new MatrixJson { n = matrixData.Count, name = fileName, connections = connections });
+        matrixJson.connections = connections;
+        matrixJson.n = matrixData.Count;
+        matrixJson.name = fileName;
 
         return matrixJson;
     }

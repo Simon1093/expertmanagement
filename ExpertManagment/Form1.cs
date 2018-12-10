@@ -26,6 +26,10 @@ namespace ExpertManagment
         List<PrimaryGraph.Verticle> loaded_graph;
         List<PrimaryGraph.Verticle> new_graph = new List<PrimaryGraph.Verticle>();
         string base_dir;
+
+        input_generator.Classes.GenerationRules ruleDataGlobal = new input_generator.Classes.GenerationRules();
+        MatrixJson matrixJsonGlobal = new MatrixJson();
+
         public Form1()
         {
             InitializeComponent();
@@ -218,9 +222,8 @@ namespace ExpertManagment
                         MatrixParser parser = new MatrixParser();
                         List<FullMatrixData> parseData = InputMatrixParser.ParseSquareMatrix(fileText, filename);
                         richTextBox2.Text = parseData[0].yamlRules;
-                        //richTextBox3.Text = JsonConvert.SerializeObject(parseData[0].matrixJson);
 
-                        //GenerationRules ruleData = input_generator.Classes.RuleParser.ParseRules(parseData[0].yamlRules);
+                        ruleDataGlobal = input_generator.Classes.RuleParser.ParseRules(parseData[0].yamlRules);
                         //input_generator.Classes.Generator.generateSquareMatrix(ruleData, parseData[0].matrixJson);
                         //richTextBox4.Text = 
                         //System.IO.File.WriteAllText("generated-matrix.txt", matrixJson);
@@ -232,7 +235,6 @@ namespace ExpertManagment
                 }
             }
         }
-
         //Load matrix to convert with rules
         private void button14_Click(object sender, EventArgs e)
         {
@@ -251,7 +253,8 @@ namespace ExpertManagment
                         string fileText = System.IO.File.ReadAllText(filename);
                         MatrixParser parser = new MatrixParser();
                         List<FullMatrixData> parseData = InputMatrixParser.ParseSquareMatrix(fileText, filename);
-                        richTextBox3.Text = JsonConvert.SerializeObject(parseData[0].matrixJson);
+                        matrixJsonGlobal = parseData[0].matrixJson;
+                        richTextBox3.Text = JsonConvert.SerializeObject(matrixJsonGlobal);
 
                         //GenerationRules ruleData = input_generator.Classes.RuleParser.ParseRules(parseData[0].yamlRules);
                         //input_generator.Classes.Generator.generateSquareMatrix(ruleData, parseData[0].matrixJson);
@@ -264,6 +267,16 @@ namespace ExpertManagment
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        //Do matrix convert
+        private void button15_Click(object sender, EventArgs e)
+        {
+            input_generator.Classes.MatrixJson matrixJson = new input_generator.Classes.MatrixJson();
+            //IMatrixJsonClass matrixJson1 = matrixJsonGlobal;
+
+           // matrixJson.connections = matrixJsonGlobal[0].connections;
+            input_generator.Classes.Generator.generateSquareMatrix(ruleDataGlobal, matrixJson);
         }
 
         private void oPENToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -609,6 +622,8 @@ namespace ExpertManagment
                 button5.Enabled = false;
             }
         }
+
+
 
 
     }
