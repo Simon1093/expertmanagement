@@ -1,7 +1,6 @@
 c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\ExpertManagment.exe.config
 c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\ExpertManagment.exe
 c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\ExpertManagment.pdb
-c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.csprojResolveAssemblyReference.cache
 c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.Form1.resources
 c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.Properties.Resources.resources
 c:\users\simon\documents\visual studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.csproj.GenerateResource.Cache
@@ -28,3 +27,11 @@ C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManag
 C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\protobuf-net.pdb
 C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\protobuf-net.xml
 C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\YamlDotNet.xml
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.csprojAssemblyReference.cache
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.csproj.CoreCompileInputs.cache
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\obj\Debug\ExpertManagment.csproj.CopyComplete
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\AutoMapper.dll
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\System.ValueTuple.dll
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\AutoMapper.pdb
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\AutoMapper.xml
+C:\Users\Simon\Documents\Visual Studio 2013\Projects\ExpertManagment\ExpertManagment\bin\Debug\System.ValueTuple.xml

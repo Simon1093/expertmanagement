@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using YamlDotNet.RepresentationModel;
 using YamlDotNet.Helpers;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace input_generator.Classes
 {
@@ -13,6 +14,7 @@ namespace input_generator.Classes
     {
         public static GenerationRules ParseRules(string rules)
         {
+            rules = Regex.Replace(rules, @"r_bracket", "\"");
             var input = new StringReader(rules);
             var yaml = new YamlStream();
             yaml.Load(input);

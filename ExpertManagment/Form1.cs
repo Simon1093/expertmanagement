@@ -17,6 +17,8 @@ using MathNet.Numerics.LinearAlgebra.Double;
 using Microsoft.Msagl;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using AutoMapper;
+using System.Text.RegularExpressions;
 
 namespace ExpertManagment
 {
@@ -221,7 +223,7 @@ namespace ExpertManagment
                         string fileText = System.IO.File.ReadAllText(filename);
                         MatrixParser parser = new MatrixParser();
                         List<FullMatrixData> parseData = InputMatrixParser.ParseSquareMatrix(fileText, filename);
-                        richTextBox2.Text = parseData[0].yamlRules;
+                        richTextBox2.Text = Regex.Replace(parseData[0].yamlRules, @"r_bracket", "\"");
 
                         ruleDataGlobal = input_generator.Classes.RuleParser.ParseRules(parseData[0].yamlRules);
                         //input_generator.Classes.Generator.generateSquareMatrix(ruleData, parseData[0].matrixJson);
@@ -272,11 +274,12 @@ namespace ExpertManagment
         //Do matrix convert
         private void button15_Click(object sender, EventArgs e)
         {
-            input_generator.Classes.MatrixJson matrixJson = new input_generator.Classes.MatrixJson();
-            //IMatrixJsonClass matrixJson1 = matrixJsonGlobal;
 
-           // matrixJson.connections = matrixJsonGlobal[0].connections;
-            input_generator.Classes.Generator.generateSquareMatrix(ruleDataGlobal, matrixJson);
+            Mapper.Initialize(cfg => { cfg.CreateMap<MatrixJson, input_generator.Classes.MatrixJson>(); });
+            var matrixJson = Mapper.Map<input_generator.Classes.MatrixJson>(matrixJsonGlobal);
+            string generatedMatrix = input_generator.Classes.Generator.generateSquareMatrix(ruleDataGlobal, matrixJson);
+            Mapper.Reset();
+            richTextBox4.Text = generatedMatrix;
         }
 
         private void oPENToolStripMenuItem_Click_1(object sender, EventArgs e)
